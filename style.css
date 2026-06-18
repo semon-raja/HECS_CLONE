@@ -1,8 +1,9 @@
-/* reset default browser spacing, using Satoshi font to match the original hecs.in site */
+/* ---- Reset & Base (Satoshi font — matches original hecs.in) ---- */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none; /* removes black focus boxes on all elements */
 }
 
 :root {
@@ -17,7 +18,7 @@
   --border:       #e8e8e8;
   --white:        #ffffff;
   --off-white:    #f8fafc;
-  /* font sizes here are matched to the original hecs.in site */
+  /* Type scale matching original hecs.in */
   --h1:   48px;
   --h2:   48px;
   --h3:   38px;
@@ -30,16 +31,17 @@ html {
 }
 
 body {
-  /* using Satoshi font, same as the original site */
+  /* Satoshi — same font as original hecs.in */
   font-family: 'Satoshi', sans-serif;
   font-size: var(--body);
   color: var(--dark);
   background: var(--white);
   overflow-x: hidden;
-  padding-top: 123px; /* leaves room for the fixed navbar up top */
 }
 
-/* sections fade and slide in as you scroll down to them (JS adds the 'visible' class) */
+/* ============================================================
+   FIX #41 — Scroll-triggered fade-in animations
+   ============================================================ */
 .section-anim {
   opacity: 0;
   transform: translateY(32px);
@@ -51,7 +53,9 @@ body {
   transform: translateY(0);
 }
 
-/* top strip with phone, email and social icons */
+/* ============================================================
+   TOP BAR (FIX #1 #2 #3)
+   ============================================================ */
 .header-wrapper{
 
 position:fixed;
@@ -68,7 +72,7 @@ transition:transform .35s ease;
 
 }
 
-/* hides the whole top bar when scrolling down */
+/* Hide entire header */
 
 
 .top-bar {
@@ -97,17 +101,17 @@ transition:transform .35s ease;
   font-weight: 500;
 }
 
-/* thin line separating phone/email from the social icons */
+/* FIX #3 — vertical divider */
 
 
-/* social icons sit after the divider */
+/* FIX #1 — social icons on LEFT side after divider */
 .top-socials {
   display: flex;
   gap: 28px;
   align-items: center;
 }
 
-/* icon turns green on hover */
+/* FIX #2 — hover on icons */
 .top-socials i {
   cursor: pointer;
   transition: opacity 0.2s;
@@ -132,7 +136,9 @@ transition:transform .35s ease;
   gap: 7px;
 }
 
-/* main navigation bar */
+/* ============================================================
+   NAVBAR (FIX #5 #6 #7 #8)
+   ============================================================ */
 .navbar {
   height: 82px;
   display: flex;
@@ -141,7 +147,7 @@ transition:transform .35s ease;
   padding: 0 70px;
   backdrop-filter: blur(55px);
   z-index: 999;
-  /* subtle shadow under the navbar */
+  /* FIX #7 — box-shadow */
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
   transition: transform .35s ease;
 }
@@ -155,7 +161,7 @@ opacity:0;
 }
 
 
-/* slides the navbar up out of view */
+/* Move navbar up */
 
 .navbar.move-up{
 
@@ -163,14 +169,14 @@ transform:translateY(-46px);
 
 }
 
-/* fully hides the navbar */
+/* Hide navbar */
 
 .navbar.hide{
 
 transform:translateY(-130px);
 
 }
-/* bigger logo size */
+/* FIX #8 — larger logo */
 .logo img {
   height: 52px;
   width: auto;
@@ -178,7 +184,7 @@ transform:translateY(-130px);
   right: -20%;
 }
 
-/* nav links get an underline on hover */
+/* FIX #5 — nav links with hover */
 .nav-links {
   display: flex;
   gap: 65px;
@@ -307,6 +313,7 @@ color:#101828;
   position: relative;
   padding-bottom: 4px;
   transition: color 0.22s;
+  outline: none; /* removes the black browser focus box */
 }
 
 .nav-links li a::after {
@@ -328,7 +335,7 @@ color:#101828;
   width: 100%;
 }
 
-/* the call-to-action button in the navbar */
+/* FIX #6 — refined CTA button */
 .nav-cta {
   background: var(--green);
   color: #fff;
@@ -349,7 +356,7 @@ color:#101828;
   transform: translateY(-1px);
 }
 
-/* hamburger icon, shown only on mobile */
+/* Hamburger (FIX #47) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -377,13 +384,21 @@ color:#101828;
   z-index: 997;
 }
 
-/* hero banner - height is based on the screen size */
+/* ============================================================
+   HERO (FIX #10 — viewport-relative height)
+   ============================================================ */
 .hero {
  
   position: relative;
   height: calc(100vh - 123px);
   min-height: 600px;
   overflow: hidden;
+}
+
+body{
+
+padding-top:123px;
+
 }
 
 .owl-carousel,
@@ -406,7 +421,7 @@ color:#101828;
   display: block;
 }
 
-/* the text card that sits on top of the banner image */
+/* ---- Overlay Card (FIX #11 #12 #13 #14 #15) ---- */
 .overlay-card {
   position: absolute;
   bottom: 20px;
@@ -417,7 +432,7 @@ color:#101828;
   justify-content: space-between;
   align-items: center;
   padding: 32px 40px;
-  /* frosted glass look, slightly see-through */
+  /* FIX #11 — less opaque, more frosted */
   background: rgba(255,255,255,0.58);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -432,7 +447,7 @@ color:#101828;
   gap: 10px;
 }
 
-/* small badge tag with a border */
+/* FIX #15 — badge with border */
 .badge {
   display: inline-block;
   background: var(--green-light);
@@ -445,7 +460,7 @@ color:#101828;
   width: fit-content;
 }
 
-/* heading size matches the original site (48px) */
+/* FIX #12 — proportional h1 matching original hecs.in (48px) */
 .overlay-card h1 {
   font-size: 48px;
   font-weight: 700;
@@ -454,7 +469,7 @@ color:#101828;
   margin: 0;
 }
 
-/* subtitle text size matches the original site (18px) */
+/* FIX #13 — subtitle matching original 18px */
 .overlay-card p {
   font-size: 18px;
   font-weight: 400;
@@ -462,7 +477,7 @@ color:#101828;
   margin: 0;
 }
 
-/* call-to-action button sizing */
+/* FIX #14 — proportional CTA button */
 .services-btn {
   background: var(--green);
   color: #fff;
@@ -486,7 +501,7 @@ color:#101828;
   transform: translateY(-2px);
 }
 
-/* left/right arrows for the Owl Carousel banner */
+/* ---- Owl Nav Arrows ---- */
 .owl-nav {
   position: absolute;
   top: 50%;
@@ -520,14 +535,16 @@ color:#101828;
   color: #fff !important;
 }
 
-/* about us section, including the vision/mission tabs */
+/* ============================================================
+   ABOUT SECTION (FIX #19 #20 #24 #25)
+   ============================================================ */
 .about-section {
-  /* off-white background colour */
+  /* FIX #24 — cleaner off-white */
   background: var(--off-white);
   padding: 100px 0;
 }
 
-/* keeps the inner content lined up consistently */
+/* FIX #19 — unified inner container */
 .about-inner {
   width: 82%;
   max-width: 1280px;
@@ -578,7 +595,7 @@ color:#101828;
   display: block;
 }
 
-/* adds a shadow and a slight offset */
+/* FIX #20 — shadow + offset */
 .experience-box {
   position: absolute;
   right: -30px;
@@ -624,7 +641,7 @@ color:#101828;
   padding-top: 10px;
 }
 
-/* more rounded corners on the tab bar */
+/* FIX #25 — rounder tab bar */
 .tabs {
   display: flex;
   background: #eff0f2;
@@ -689,7 +706,9 @@ display:block;
   color: var(--text);
 }
 
-/* services section - left menu + right info panel that updates on click */
+/* ============================================================
+   SERVICES SECTION (FIX #21 #22 #23 #46)
+   ============================================================ */
 .services-section {
   width: 100%;
   padding: 70px 0 90px;
@@ -703,7 +722,7 @@ display:block;
   text-align: center;
 }
 
-/* small dot badges next to the section label */
+/* FIX #21 — dot badges */
 .badge-tag {
   display: inline-flex;
   align-items: center;
@@ -725,7 +744,7 @@ display:block;
   display: inline-block;
 }
 
-/* heading font weight */
+/* FIX #22 — heading weight */
 .services-intro h2 {
   font-size: var(--h2);
   font-weight: 500;
@@ -738,7 +757,7 @@ display:block;
   font-weight: 700;
 }
 
-/* shadow around the whole services box */
+/* FIX #46 — outer shadow on services widget */
 .services-wrapper{
 
 width:84%;
@@ -900,7 +919,7 @@ margin-bottom:38px;
   align-items: flex-start;
 }
 
-/* icons in green to match the site's colour theme */
+/* FIX #23 — green icons, not blue */
 .feature-icon {
   width: 56px;
   height: 56px;
@@ -951,7 +970,9 @@ margin-bottom:38px;
   transform: translateY(-1px);
 }
 
-/* achievement stats with the count-up numbers */
+/* ============================================================
+   ACHIEVEMENTS SECTION (FIX #26 #27 #28)
+   ============================================================ */
 .achievements-section {
   background: var(--green-mid);
   padding: 100px 0;
@@ -980,7 +1001,7 @@ margin-bottom:38px;
 
 .achievements-row:last-child { margin-bottom: 0; }
 
-/* thin line between each stat item */
+/* FIX #28 — dividers between items */
 .achievement-item {
   flex: 1;
   padding: 0 20px;
@@ -989,7 +1010,7 @@ margin-bottom:38px;
 
 .achievement-item:last-child { border-right: none; }
 
-/* slightly smaller font size for the numbers */
+/* FIX #27 — smaller number size */
 .achievement-item h3 {
   font-size: 62px;
   font-weight: 700;
@@ -1005,12 +1026,19 @@ margin-bottom:38px;
   color: rgba(255,255,255,0.9);
 }
 
-/* partner / client logos that scroll sideways automatically */
+/* ============================================================
+   PARTNERS SECTION (FIX #29 #30)
+   ============================================================ */
 .partners-section {
   padding: 90px 0 80px;
   background: var(--white);
   text-align: center;
   overflow: hidden;
+}
+
+/* FIX #29 — badge above heading */
+.partners-badge {
+  margin-bottom: 14px;
 }
 
 .partners-section h2 {
@@ -1049,7 +1077,7 @@ margin-bottom:38px;
   animation-play-state: paused;
 }
 
-/* rounded logo tiles, shadow appears on hover */
+/* FIX #30 — rounded logo tiles with hover shadow */
 .partner-logo {
   width: 210px;
   height: 120px;
@@ -1085,7 +1113,9 @@ margin-bottom:38px;
   100% { transform: translateX(0); }
 }
 
-/* recent work carousel */
+/* ============================================================
+   RECENT WORK SECTION (FIX #31 #32)
+   ============================================================ */
 .recent-work-section {
   width: 88%;
   max-width: 1380px;
@@ -1129,9 +1159,10 @@ margin-bottom:38px;
   border-color: var(--green);
 }
 
-/* clips the carousel so only 3 cards show at a time, nothing peeking on the edges */
+/* Wrapper clips strictly — no card should peek from either side */
 .recent-work-wrapper {
   overflow: hidden;
+  width: 100%;
 }
 
 .recent-work-track {
@@ -1140,7 +1171,7 @@ margin-bottom:38px;
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* made the cards a bit taller */
+/* FIX #32 — taller cards */
 .work-card {
   position: relative;
   flex: 0 0 calc(33.333% - 18px);
@@ -1236,7 +1267,9 @@ margin-bottom:38px;
   margin: 0;
 }
 
-/* news & events auto-sliding cards */
+/* ============================================================
+   NEWS & EVENTS SECTION (FIX #44)
+   ============================================================ */
 .news-section {
   width: 100%;
   max-width: 100%;
@@ -1356,7 +1389,7 @@ margin-bottom:38px;
   overflow: hidden;
 }
 
-/* taller images on the news cards */
+/* FIX #44 — taller news images */
 .news-card-img img {
   width: 100%;
   height: 260px;
@@ -1419,7 +1452,9 @@ margin-bottom:38px;
   color: var(--muted);
 }
 
-/* contact form + map section */
+/* ============================================================
+   CONTACT SECTION (FIX #45)
+   ============================================================ */
 .contact-section {
   display: flex;
   min-height: 640px;
@@ -1561,9 +1596,13 @@ margin-bottom:38px;
   border: 0;
 }
 
-/* footer */
+/* ============================================================
+   FOOTER (FIX #33 #34 #35 #36)
+   ============================================================ */
 
-/* footer styling continued */
+/* ============================================================
+   FOOTER
+============================================================ */
 
 .site-footer{
 position:relative;
@@ -1574,7 +1613,7 @@ overflow:hidden;
 color:#fff;
 }
 
-/* faint grid pattern in the footer background */
+/* Background grid pattern */
 
 .site-footer::before{
 
@@ -1628,7 +1667,7 @@ padding-bottom:55px;
 z-index:2;
 }
 
-/* footer logo */
+/* Logo */
 
 .footer-logo{
 
@@ -1650,7 +1689,7 @@ color:#fff;
 max-width:340px;
 }
 
-/* social icons in the footer */
+/* Social icons */
 
 .footer-socials{
 
@@ -1691,7 +1730,7 @@ background:#fff;
 color:#68c04b;
 }
 
-/* footer column headings */
+/* Headings */
 
 .footer-col h4{
 
@@ -1704,7 +1743,7 @@ margin-bottom:20px;
 color:#fff;
 }
 
-/* footer links */
+/* Links */
 
 .footer-col a{
 
@@ -1726,7 +1765,7 @@ transition:.3s;
 transform:translateX(5px);
 }
 
-/* bottom strip with the copyright line */
+/* Bottom */
 
 .footer-bottom{
 
@@ -1746,9 +1785,49 @@ font-size:14px;
 color:#fff;
 }
 
-/* the whatsapp / scroll-top / message buttons that float bottom-right */
+/* ============================================================
+   FLOATING BUTTONS (FIX #37 #38)
+   ============================================================ */
 
-/* scroll-to-top button, progress ring version */
+.floating-buttons{
+
+position:fixed;
+
+right:30px;
+
+bottom:24px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+z-index:900;
+
+}
+/* FIX #38 — WhatsApp with pulse animation */
+.whatsapp-btn {
+  width: 56px;
+  height: 56px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+
+@keyframes pulse-ring {
+
+}
+
+
+/* ===== SCROLL TO TOP ===== */
 .floating-buttons{
 
 position:fixed;
@@ -1767,7 +1846,7 @@ z-index:1000;
 
 }
 
-/* whatsapp button */
+/* whatsapp */
 
 .whatsapp-btn,
 
@@ -1798,7 +1877,8 @@ box-shadow:
 
 }
 
-/* scroll-to-top button, progress ring version */
+/* scroll */
+/* ===== SCROLL TOP BUTTON ===== */
 
 .scroll-top-btn{
 
@@ -1832,7 +1912,7 @@ position:relative;
 
 }
 
-/* shown once you've scrolled down a bit */
+/* visible state */
 
 .scroll-top-btn.visible{
 
@@ -1844,7 +1924,7 @@ pointer-events:all;
 
 }
 
-/* the up arrow icon inside the button */
+/* arrow */
 
 .scroll-top-btn i{
 
@@ -1855,19 +1935,29 @@ color:#fff;
 }
 
 
-/* responsive styles for tablet and mobile screens */
+/* ============================================================
+   RESPONSIVENESS (FIX #47 #48 #49 #50)
+   ============================================================ */
 @media (max-width: 1100px) {
   .services-wrapper { flex-direction: column; }
-  .service-menu { width: 100%; flex-direction: row; flex-wrap: wrap; }
-  .service-btn { flex: 0 0 calc(50% - 7px); }
+  /* Switch menu to a 2-column grid — each button takes exactly half the row */
+  .service-menu {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .service-btn { width: 100%; }
   .service-image { width: 40%; }
+  /* Footer: logo spans full width, link columns go 2 per row */
   .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
 }
 
 @media (max-width: 900px) {
   .top-bar { padding: 0 20px; }
 
-  /* hamburger menu styling for mobile */
+  /* FIX #47 — hamburger menu */
   .hamburger { display: flex; }
 
   .nav-links {
@@ -1899,7 +1989,7 @@ color:#fff;
   .navbar { padding: 0 20px; }
   .nav-cta { display: none; }
 
-  /* hero text card adjustments for tablet */
+  /* FIX #48 — hero card on tablet */
   .overlay-card {
     left: 18px;
     right: 18px;
@@ -1913,19 +2003,29 @@ color:#fff;
   .overlay-card h1 { font-size: 28px; }
   .overlay-card p  { font-size: 15px; }
 
-  /* about section stacks vertically on smaller screens */
+  /* FIX #49 — about stacked */
   .about-container { flex-direction: column; }
   .about-image { width: 100%; }
   .about-image img { height: 380px; }
   .experience-box { right: 0; bottom: -40px; }
   .about-content { width: 100%; padding-top: 60px; }
 
-  /* services section stacks vertically on smaller screens */
+  /* Services — keep 2-column grid on smaller screens too, display panel stacks below */
   .services-wrapper { flex-direction: column; }
-  .service-menu { width: 100%; flex-direction: row; flex-wrap: wrap; }
-  .service-btn { flex: 0 0 calc(50% - 7px); }
+  .service-menu {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .service-btn { width: 100%; flex: unset; }
   .service-display { flex-direction: column; }
   .service-image { width: 100%; height: 240px; }
+
+  /* Recent work — 1 card at a time on tablet/mobile, no gap so nothing peeks */
+  .work-card { flex: 0 0 100%; height: 480px; }
+  .recent-work-wrapper { padding-right: 0; }
+  .recent-work-track { gap: 0; }
 
   .news-header { grid-template-columns: 1fr; width: 92%; }
   .news-header h2 { font-size: 42px; }
@@ -1937,7 +2037,9 @@ color:#fff;
   .contact-map-panel { width: 100%; padding: 0 24px 40px; }
   .contact-map-card { min-height: 360px; }
 
+  /* Footer: logo full width on top, link columns 2 per row */
   .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
 
   .achievements-row { flex-wrap: wrap; }
   .achievement-item { flex: 0 0 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.25); padding: 20px; }
@@ -1950,12 +2052,23 @@ color:#fff;
   .recent-work-section { width: 92%; }
   .news-section { width: 92%; }
 
-  .work-card { flex: 0 0 85%; }
-  .recent-work-wrapper { padding-right: 30px; }
+  /* On small phones — switch to 1 column, buttons stack one by one */
+  .service-menu {
+    grid-template-columns: 1fr;
+  }
+  /* Reset the nth-child span rule since everything is 1 column now */
+  .service-btn:nth-child(7) { grid-column: auto; }
+
+  /* Recent work — 1 card at a time on small phones */
+  .work-card { flex: 0 0 100%; height: 480px; }
+  .recent-work-wrapper { padding-right: 0; }
+  .recent-work-track { gap: 0; }
 
   .contact-form input, .contact-form textarea { max-width: 100%; }
 
-  .footer-top { grid-template-columns: 1fr; }
+  /* Footer on small phones — logo full width, links still 2 columns like original */
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
   .overlay-card h1 { font-size: 22px; }
 
   .achievement-item { flex: 0 0 100%; }

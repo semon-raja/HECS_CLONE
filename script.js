@@ -1,9 +1,8 @@
 $(document).ready(function () {
 
   /* ============================================================
-     HOME PAGE BANNER (the big sliding images at the top)
-     Using the Owl Carousel plugin to handle the actual sliding,
-     I'm just setting it up here with the options I want.
+     BANNER SLIDER (Owl Carousel)
+     FIX #9 — proper nav, FIX #42 — per-slide overlay animation
      ============================================================ */
   const $slider = $('.banner-slider');
 
@@ -22,8 +21,7 @@ $(document).ready(function () {
     ]
   });
 
-  // Every time the slide changes, I want the text card on top of the
-  // image to fade in and slide up a little instead of just popping in.
+  // FIX #42 — animate overlay card content on each slide
   function animateOverlay() {
     $('.overlay-card').css({ opacity: 0, transform: 'translateY(20px)' });
     setTimeout(function () {
@@ -35,46 +33,55 @@ $(document).ready(function () {
     }, 100);
   }
 
-  animateOverlay(); // run once for the first slide on page load
-  $slider.on('translated.owl.carousel', animateOverlay); // and again every time it moves to a new slide
+  animateOverlay();
+  $slider.on('translated.owl.carousel', animateOverlay);
 
 
   /* ============================================================
      VISION / MISSION TABS
-     Simple toggle - clicking one button shows its text and
-     marks itself active, the other one goes back to normal.
      ============================================================ */
   const visionBtn  = document.getElementById('visionBtn');
   const missionBtn = document.getElementById('missionBtn');
-  const visionContent  = document.getElementById('visionContent');
-  const missionContent = document.getElementById('missionContent');
+  const visionContent =
+    document.getElementById('visionContent');
 
-  visionBtn.addEventListener('click', () => {
+    const missionContent =
+    document.getElementById('missionContent');
+
+
+    visionBtn.addEventListener('click',()=>{
+
     visionBtn.classList.add('active');
+
     missionBtn.classList.remove('active');
 
-    visionContent.classList.add('active');
-    missionContent.classList.remove('active');
-  });
 
-  missionBtn.addEventListener('click', () => {
+    visionContent.classList.add('active');
+
+    missionContent.classList.remove('active');
+
+    });
+
+
+    missionBtn.addEventListener('click',()=>{
+
     missionBtn.classList.add('active');
+
     visionBtn.classList.remove('active');
 
+
     missionContent.classList.add('active');
+
     visionContent.classList.remove('active');
-  });
+
+    });
 
 
   /* ============================================================
      SERVICES PANEL
-     Instead of writing separate code for every single service
-     button, I'm keeping all the service info (image, title,
-     description, the two feature blocks) in one object below.
-     When a button is clicked I just look up its info here and
-     drop it into the page.
+     FIX #23 — all icons use green feature-icon
      ============================================================ */
-  const servicesInfo = {
+  const data = {
     turnkey: {
       img: 'images/trunkey_solutions.png',
       title: 'Turnkey Solutions',
@@ -154,209 +161,193 @@ $(document).ready(function () {
     }
   };
 
-  const serviceButtons = document.querySelectorAll('.service-btn');
+  const buttons = document.querySelectorAll('.service-btn');
 
-  serviceButtons.forEach(button => {
+  buttons.forEach(button => {
     button.addEventListener('click', () => {
-      // first turn off "active" look on every button and hide their icons
-      serviceButtons.forEach(btn => {
+      buttons.forEach(btn => {
         btn.classList.remove('active');
         const icon = btn.querySelector('i');
         if (icon) icon.style.opacity = '0';
       });
-
-      // then turn it back on just for the one that was clicked
       button.classList.add('active');
       const activeIcon = button.querySelector('i');
       if (activeIcon) activeIcon.style.opacity = '1';
 
-      // grab this button's info from the object above using its data-service attribute
-      const selected = servicesInfo[button.dataset.service];
-      if (!selected) return; // just in case the attribute doesn't match anything
+      const item = data[button.dataset.service];
+      if (!item) return;
 
-      // swap the image, title, description and the two feature blocks on the page
-      document.getElementById('serviceImage').src          = selected.img;
-      document.getElementById('serviceTitle').textContent  = selected.title;
-      document.getElementById('serviceDesc').textContent   = selected.desc;
-      document.getElementById('feature1Title').textContent = selected.f1title;
-      document.getElementById('feature1Text').textContent  = selected.f1text;
-      document.getElementById('feature2Title').textContent = selected.f2title;
-      document.getElementById('feature2Text').textContent  = selected.f2text;
+      document.getElementById('serviceImage').src     = item.img;
+      document.getElementById('serviceTitle').textContent  = item.title;
+      document.getElementById('serviceDesc').textContent   = item.desc;
+      document.getElementById('feature1Title').textContent = item.f1title;
+      document.getElementById('feature1Text').textContent  = item.f1text;
+      document.getElementById('feature2Title').textContent = item.f2title;
+      document.getElementById('feature2Text').textContent  = item.f2text;
 
-      // and update the two little feature icons to match
-      const featureIcons = document.querySelectorAll('.feature-icon i');
-      if (featureIcons[0]) featureIcons[0].className = selected.f1icon;
-      if (featureIcons[1]) featureIcons[1].className = selected.f2icon;
+      // Update icons
+      const icons = document.querySelectorAll('.feature-icon i');
+      if (icons[0]) icons[0].className = item.f1icon;
+      if (icons[1]) icons[1].className = item.f2icon;
     });
   });
 
-  // make sure the icon on whichever button starts as "active" is visible right away
-  const firstActiveIcon = document.querySelector('.service-btn.active i');
-  if (firstActiveIcon) firstActiveIcon.style.opacity = '1';
+  // Init first button icon
+  const firstBtn = document.querySelector('.service-btn.active i');
+  if (firstBtn) firstBtn.style.opacity = '1';
 
 
   /* ============================================================
-     RECENT WORK CAROUSEL
-     This one needed a bit of a trick to loop forever. A normal
-     slider runs out of cards at the end, so what I did is clone
-     all the cards and stick a full copy before and after the
-     real ones. That way there's always something to slide to.
-     When the user scrolls into one of the cloned copies, I jump
-     back to the matching spot in the real cards without any
-     animation, so it looks like it just keeps going forever.
+     RECENT WORK CAROUSEL — Infinite loop (clone-based)
      ============================================================ */
   const workTrack = document.getElementById('workTrack');
   const workPrev  = document.getElementById('workPrev');
   const workNext  = document.getElementById('workNext');
 
   if (workTrack && workPrev && workNext) {
-    const realCards = Array.from(workTrack.children);
-    const realCardCount = realCards.length;
+    const originalCards = Array.from(workTrack.children);
+    const totalOriginal = originalCards.length;
 
-    // copy the real cards and add them to the end
-    realCards.forEach(card => {
+    // Clone all cards and append for seamless loop
+    originalCards.forEach(card => {
       workTrack.appendChild(card.cloneNode(true));
     });
-    // and copy them again, reversed, adding them to the start
-    [...realCards].reverse().forEach(card => {
+    // Also prepend clones at the beginning
+    [...originalCards].reverse().forEach(card => {
       workTrack.insertBefore(card.cloneNode(true), workTrack.firstChild);
     });
 
     const allCards = () => Array.from(workTrack.children);
-    let currentIndex = realCardCount; // start on the first real card, after the cloned ones at the start
-    let isAnimating = false;
+    let workIndex = totalOriginal; // Start at first real card (after prepended clones)
+    let isTransitioning = false;
 
     workTrack.style.transition = 'none';
 
     function getCardWidth() {
-      return allCards()[0].getBoundingClientRect().width + 26; // card width plus the gap between cards
+      // On mobile (below 900px) cards are 100% width with no gap between them
+      // On desktop cards are 1/3 width with a 26px gap
+      const gap = window.innerWidth <= 900 ? 0 : 26;
+      return allCards()[0].getBoundingClientRect().width + gap;
     }
 
-    function moveTo(index, withAnimation) {
-      workTrack.style.transition = withAnimation
-        ? 'transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-        : 'none';
+    function jumpTo(index, animate) {
+      if (!animate) {
+        workTrack.style.transition = 'none';
+      } else {
+        workTrack.style.transition = 'transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }
       workTrack.style.transform = `translateX(-${index * getCardWidth()}px)`;
     }
 
-    // put it in the right starting spot before anything is shown on screen
-    requestAnimationFrame(() => moveTo(currentIndex, false));
+    // Initial position (no animation)
+    requestAnimationFrame(() => jumpTo(workIndex, false));
 
     workTrack.addEventListener('transitionend', () => {
-      // gone too far into the cloned cards at the end? snap back to the matching real card
-      if (currentIndex >= realCardCount + realCardCount) {
-        currentIndex = realCardCount;
-        moveTo(currentIndex, false);
+      const total = allCards().length;
+      // If past the appended clones, jump back to real cards
+      if (workIndex >= totalOriginal + totalOriginal) {
+        workIndex = totalOriginal;
+        jumpTo(workIndex, false);
       }
-      // gone too far back into the cloned cards at the start? snap to the matching real card at the end
-      if (currentIndex < realCardCount) {
-        currentIndex = realCardCount + realCardCount - 1;
-        moveTo(currentIndex, false);
+      // If before the prepended clones start, jump to real end
+      if (workIndex < totalOriginal) {
+        workIndex = totalOriginal + totalOriginal - 1;
+        jumpTo(workIndex, false);
       }
-      isAnimating = false;
+      isTransitioning = false;
     });
 
-    function showNextCard() {
-      if (isAnimating) return; // ignore clicks while it's still sliding
-      isAnimating = true;
-      currentIndex++;
-      moveTo(currentIndex, true);
+    function workSlideNext() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      workIndex++;
+      jumpTo(workIndex, true);
     }
 
-    function showPrevCard() {
-      if (isAnimating) return;
-      isAnimating = true;
-      currentIndex--;
-      moveTo(currentIndex, true);
+    function workSlidePrev() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      workIndex--;
+      jumpTo(workIndex, true);
     }
 
-    workNext.addEventListener('click', showNextCard);
-    workPrev.addEventListener('click', showPrevCard);
-    window.addEventListener('resize', () => moveTo(currentIndex, false));
+    workNext.addEventListener('click', workSlideNext);
+    workPrev.addEventListener('click', workSlidePrev);
+    window.addEventListener('resize', () => jumpTo(workIndex, false));
 
-    // slide to the next card automatically every 3.5 seconds
-    let workAutoplay = setInterval(showNextCard, 3500);
+    // Auto-slide every 3.5s
+    let workAutoplay = setInterval(workSlideNext, 3500);
 
-    // stop the auto-slide while the mouse is over it, start again once it leaves
+    // Pause on hover
     workTrack.parentElement.addEventListener('mouseenter', () => clearInterval(workAutoplay));
     workTrack.parentElement.addEventListener('mouseleave', () => {
-      workAutoplay = setInterval(showNextCard, 3500);
+      workAutoplay = setInterval(workSlideNext, 3500);
     });
   }
 
 
   /* ============================================================
-     NEWS & EVENTS SLIDER
-     Same general idea as the work carousel but simpler - this one
-     only needs to loop in one direction (forward), so I only clone
-     the very first card and stick it at the end. Once we slide past
-     the real cards onto that one clone, jump back to the start.
+     NEWS & EVENTS AUTO-SLIDER
      ============================================================ */
   const newsTrack = document.getElementById('newsTrack');
 
   if (newsTrack) {
-    const newsWrapper  = newsTrack.parentElement;
-    const realNewsCards = Array.from(newsTrack.children);
-    const firstCardClone = realNewsCards[0].cloneNode(true);
-    newsTrack.appendChild(firstCardClone);
+    const newsWrapper    = newsTrack.parentElement;
+    const originalCards  = Array.from(newsTrack.children);
+    const firstClone     = originalCards[0].cloneNode(true);
+    newsTrack.appendChild(firstClone);
 
     let newsIndex = 0;
-    const realNewsCount = realNewsCards.length;
-    let isResetting = false;
+    const totalReal = originalCards.length;
+    let isJumping   = false;
 
-    function getNewsCardStep() {
+    function newsCardStep() {
       const cardWidth = newsTrack.children[0].getBoundingClientRect().width;
       return cardWidth + 26;
     }
 
-    function moveToNewsCard(index, withAnimation = true) {
-      newsTrack.style.transition = withAnimation ? 'transform 0.7s ease' : 'none';
-      newsTrack.style.transform  = `translateX(-${index * getNewsCardStep()}px)`;
+    function goToNews(index, animate = true) {
+      newsTrack.style.transition = animate ? 'transform 0.7s ease' : 'none';
+      newsTrack.style.transform  = `translateX(-${index * newsCardStep()}px)`;
     }
 
-    function showNextNewsCard() {
-      if (isResetting) return;
+    function slideNews() {
+      if (isJumping) return;
       newsIndex++;
-      moveToNewsCard(newsIndex);
+      goToNews(newsIndex);
 
-      // once we've slid onto the cloned first card, snap back to the real first card (no animation, so it's invisible)
-      if (newsIndex === realNewsCount) {
-        isResetting = true;
-        newsTrack.addEventListener('transitionend', function resetPosition() {
-          newsTrack.removeEventListener('transitionend', resetPosition);
+      if (newsIndex === totalReal) {
+        isJumping = true;
+        newsTrack.addEventListener('transitionend', function reset() {
+          newsTrack.removeEventListener('transitionend', reset);
           newsIndex = 0;
-          moveToNewsCard(newsIndex, false);
-          isResetting = false;
+          goToNews(newsIndex, false);
+          isJumping = false;
         });
       }
     }
 
-    let newsAutoplay = setInterval(showNextNewsCard, 3200);
+    let newsInterval = setInterval(slideNews, 3200);
 
     if (newsWrapper) {
-      newsWrapper.addEventListener('mouseenter', () => clearInterval(newsAutoplay));
+      newsWrapper.addEventListener('mouseenter', () => clearInterval(newsInterval));
       newsWrapper.addEventListener('mouseleave', () => {
-        newsAutoplay = setInterval(showNextNewsCard, 3200);
+        newsInterval = setInterval(slideNews, 3200);
       });
     }
 
-    window.addEventListener('resize', () => moveToNewsCard(newsIndex, false));
+    window.addEventListener('resize', () => goToNews(newsIndex, false));
   }
 
 
   /* ============================================================
-     COUNTING NUMBER ANIMATION
-     For the stats on the page (like "25k+ clients") I don't want
-     the number to just appear - I want it to count up from 0.
-     I'm using IntersectionObserver here so the counting only
-     starts once the number actually scrolls into view, instead
-     of running the moment the page loads while it's off-screen.
+     FIX #26 — COUNT-UP ANIMATION (IntersectionObserver)
      ============================================================ */
   function countUp(el) {
     const target = parseInt(el.dataset.target, 10);
     const suffix = el.dataset.suffix || '';
-    const duration = 2000; // total time for the count to finish, in ms
-    const step = Math.ceil(target / (duration / 16)); // how much to add every frame (roughly 60fps)
+    const duration = 2000;
+    const step = Math.ceil(target / (duration / 16));
     let current = 0;
 
     const timer = setInterval(() => {
@@ -369,10 +360,9 @@ $(document).ready(function () {
     }, 16);
   }
 
-  const countUpElements = document.querySelectorAll('.count-up');
-  const countUpObserver = new IntersectionObserver((entries) => {
+  const countEls = document.querySelectorAll('.count-up');
+  const countObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      // only run the count once per element, even if you scroll past it again
       if (entry.isIntersecting && !entry.target.dataset.counted) {
         entry.target.dataset.counted = 'true';
         countUp(entry.target);
@@ -380,17 +370,13 @@ $(document).ready(function () {
     });
   }, { threshold: 0.4 });
 
-  countUpElements.forEach(el => countUpObserver.observe(el));
+  countEls.forEach(el => countObserver.observe(el));
 
 
   /* ============================================================
-     FADE-IN SECTIONS ON SCROLL
-     Same IntersectionObserver idea, but simpler - any section
-     with the "section-anim" class just gets a "visible" class
-     added once it scrolls into view, and the actual fade/slide
-     animation is handled in the CSS.
+     FIX #41 — SCROLL-TRIGGERED SECTION FADE-IN
      ============================================================ */
-  const fadeInObserver = new IntersectionObserver((entries) => {
+  const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
@@ -398,14 +384,11 @@ $(document).ready(function () {
     });
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.section-anim').forEach(el => fadeInObserver.observe(el));
+  document.querySelectorAll('.section-anim').forEach(el => sectionObserver.observe(el));
 
 
   /* ============================================================
-     SCROLL-TO-TOP BUTTON
-     Show the little floating button only after scrolling down a
-     bit, hide it again near the top, and scroll smoothly to the
-     top when it's clicked.
+     FIX #37 — SCROLL-TO-TOP BUTTON
      ============================================================ */
   const scrollTopBtn = document.getElementById('scrollTopBtn');
 
@@ -423,74 +406,144 @@ $(document).ready(function () {
 
 
   /* ============================================================
-     MOBILE MENU (hamburger icon)
-     Clicking the hamburger opens the nav menu and a dark overlay
-     behind it, and locks the page so it can't scroll underneath.
-     Clicking the overlay, or any link in the menu, closes it again.
+     FIX #47 — HAMBURGER MENU
      ============================================================ */
   const hamburger  = document.getElementById('hamburger');
   const navLinks   = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
 
-  function openMobileNav() {
+  function openNav() {
     navLinks.classList.add('open');
     navOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden'; // stop background scroll while menu is open
+    document.body.style.overflow = 'hidden';
   }
 
-  function closeMobileNav() {
+  function closeNav() {
     navLinks.classList.remove('open');
     navOverlay.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  hamburger.addEventListener('click', openMobileNav);
-  navOverlay.addEventListener('click', closeMobileNav);
+  hamburger.addEventListener('click', openNav);
+  navOverlay.addEventListener('click', closeNav);
 
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMobileNav);
+    link.addEventListener('click', closeNav);
   });
 
+  /* ==================================
+HEADER BEHAVIOUR 
+================================== */
 
-  /* ============================================================
-     HEADER BEHAVIOUR ON SCROLL
-     The top bar (phone number / email) and the navbar react to
-     scroll direction:
-       - right at the top of the page: show everything normally
-       - scrolling down: hide the top bar and slide the navbar up
-       - scrolling up: keep the navbar visible but still hide the top bar
-     I'm comparing the current scroll position to the last one
-     I saved to figure out which direction the user just scrolled.
-     ============================================================ */
-  let lastScroll = 0;
-  const topBar = document.querySelector('.top-bar');
-  const navbar = document.querySelector('.navbar');
+let lastScroll = 0;
 
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+const topBar = document.querySelector(".top-bar");
 
-    // back at the very top of the page - reset everything to normal
-    if (currentScroll <= 20) {
-      topBar.classList.remove('hide');
-      navbar.classList.remove('hide');
-      navbar.classList.remove('move-up');
-      lastScroll = currentScroll;
-      return;
-    }
+const navbar = document.querySelector(".navbar");
 
-    if (currentScroll > lastScroll) {
-      // scrolling down
-      topBar.classList.add('hide');
-      navbar.classList.add('move-up');
-      navbar.classList.add('hide');
-    } else {
-      // scrolling up
-      topBar.classList.add('hide');
-      navbar.classList.remove('hide');
-      navbar.classList.add('move-up');
-    }
+window.addEventListener("scroll", () => {
 
-    lastScroll = currentScroll;
-  });
+  const current = window.pageYOffset;
+
+  /* Back at top */
+
+  if(current <= 20){
+
+    topBar.classList.remove("hide");
+
+    navbar.classList.remove("hide");
+
+    navbar.classList.remove("move-up");
+
+    lastScroll = current;
+
+    return;
+
+  }
+
+  /* Scroll down */
+
+  if(current > lastScroll){
+
+    topBar.classList.add("hide");
+
+    navbar.classList.add("move-up");
+
+    navbar.classList.add("hide");
+
+  }
+
+  /* Scroll up */
+
+  else{
+
+    topBar.classList.add("hide");
+
+    navbar.classList.remove("hide");
+
+    navbar.classList.add("move-up");
+
+  }
+
+  lastScroll = current;
+
+});
+
+const scrollBtn =
+document.getElementById("scrollTopBtn");
+
+const border =
+document.querySelector(".progress-border");
+
+const totalLength = 240;
+
+window.addEventListener("scroll",()=>{
+
+const scrollTop =
+window.pageYOffset;
+
+const documentHeight =
+document.documentElement.scrollHeight -
+window.innerHeight;
+
+const progress =
+scrollTop/documentHeight;
+
+/* show button */
+
+if(scrollTop>300){
+
+scrollBtn.classList.add("visible");
+
+}else{
+
+scrollBtn.classList.remove("visible");
+
+}
+
+/* border animation */
+
+const offset =
+totalLength -
+(progress * totalLength);
+
+border.style.strokeDashoffset =
+offset;
+
+});
+
+/* scroll to top */
+
+scrollBtn.addEventListener("click",()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
 
 });
