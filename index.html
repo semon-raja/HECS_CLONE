@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HECS — India's Leading Environmental Solutions Provider</title>
+
+  <!-- Satoshi font — matches original hecs.in -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+</head>
+
+<body>
+
+  <div class="header-wrapper">
+
+  <!-- top strip with phone number, email and social icons -->
+
+  <div class="top-bar">
+    <div class="top-bar-left">
+
+      <span class="top-phone">
+        <i class="fa-solid fa-phone"></i>
+        044-35391255
+      </span>
+
+      <span class="top-divider"></span>
+
+      <div class="top-socials">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-linkedin-in"></i>
+      </div>
+
+    </div>
+
+    <div class="top-bar-right">
+      <span class="top-email">
+        <i class="fa-solid fa-envelope"></i>
+        marketing@hecs.in
+      </span>
+    </div>
+  </div>
+
+
+  <!-- main navigation bar with logo, menu links and the hamburger for mobile -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      <img src="images/logo-local.png" alt="HECS Logo">
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#">Home</a></li>
+      <li class="nav-item dropdown">
+        <a href="#">
+          About us
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+        <div class="mega-dropdown">
+          <a href="#">Board of Directors</a>
+          <a href="#">Accreditations</a>
+          <a href="#">Awards and Accolades</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="#">
+          Our Products & Services
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+        <div class="mega-dropdown">
+          <a href="#">Turnkey Solutions</a>
+          <a href="#">Laboratory Services</a>
+          <a href="#">Consultancy Services</a>
+          <a href="#">Operation and Maintenance</a>
+          <a href="#">Packaged Sewage Treatment Plants</a>
+          <a href="#">BI Marketing and Services</a>
+        </div>
+      </li>
+      <li><a href="#">Careers</a></li>
+      <li class="nav-item dropdown">
+        <a href="#">
+          Resources
+          <i class="fa-solid fa-chevron-down"></i>
+        </a>
+        <div class="mega-dropdown">
+          <a href="#">News & Events</a>
+          <a href="#">Blog</a>
+          <a href="#">Regulations</a>
+          <a href="#">Social Media</a>
+          <a href="#">HECS Plantation Drive</a>
+        </div>
+      </li>
+      <li><a href="#">CSR</a></li>
+    </ul>
+
+    <a href="#" class="nav-cta">Contact us</a>
+
+  </nav>
+
+
+  <!-- Mobile Drawer Overlay -->
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+</div>
+  <!-- the big sliding banner at the top of the page -->
+  <section class="hero">
+    <div class="owl-carousel banner-slider">
+
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="images/hecsbanner1.jpg" alt="HECS Banner 1">
+        <div class="overlay-card">
+          <div class="overlay-text">
+            <span class="badge">● 27+ years</span>
+            <h1>A leader in the</h1>
+            <p>Water and Wastewater Treatment Industry</p>
+          </div>
+          <button class="services-btn">Our Services <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="images/am.jpeg" alt="HECS Banner 2">
+        <div class="overlay-card">
+          <div class="overlay-text">
+            <span class="badge">● 500+ Projects</span>
+            <h1>Engineering Excellence</h1>
+            <p>Environmental Solutions</p>
+          </div>
+          <button class="services-btn">Explore <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="images/hecsbanner2.jpg" alt="HECS Banner 3">
+        <div class="overlay-card">
+          <div class="overlay-text">
+            <span class="badge">● Trusted Partner</span>
+            <h1>Smart Water Management</h1>
+            <p>Innovative Water Treatment Systems</p>
+          </div>
+          <button class="services-btn">Learn More <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- about us section, with the vision/mission tabs -->
+  <section class="about-section section-anim">
+    <div class="about-inner">
+
+      <div class="about-intro">
+        <h1>India's Leading Environmental Solutions Provider</h1>
+        <p>Hubert Enviro Care Systems (HECS) is a pioneer in delivering integrated environmental solutions with 27 years of industry-leading expertise. As one of India's most trusted environmental service providers, we offer a comprehensive range of services, including wastewater treatment solutions, STP operations and maintenance, environmental consultancy, NABL-accredited laboratory services, and Packaged Sewage Treatment Plants (PSTP). Our solutions are designed to help industries, institutions, and municipalities meet regulatory standards while promoting sustainability. With a strong focus on innovation, compliance, and long-term performance, HECS is committed to driving measurable environmental impact and building a cleaner, safer future for generations ahead.</p>
+      </div>
+
+      <div class="about-container">
+
+        <div class="about-image">
+          <img src="images/history-new-1.jpeg" alt="HECS">
+          <div class="experience-box">
+            <div class="stat-item">
+              <h2>10+</h2>
+              <p>Locations Internationally</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <h2>25k+</h2>
+              <p>Satisfied Clients</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <div class="tabs">
+            <button id="visionBtn" class="tab active">Our Vision</button>
+            <button id="missionBtn" class="tab">Our Mission</button>
+          </div>
+          <div id="contentArea">
+
+            <div id="visionContent" class="tab-content active">
+
+                <h3>Vision 2025</h3>
+
+                <p>
+                In 2015, Hubert Enviro Care Systems Ltd.(HECS)
+                set forth a clear vision to emerge as one of
+                India's leading Environmental Management
+                Companies by 2025.
+                </p>
+
+                <h3>Vision 2035</h3>
+
+                <p>
+                Upon the successful realization of Vision
+                2025, HECS now embarks on its ambitious
+                Vision 2035.
+                </p>
+
+            </div>
+
+
+            <div id="missionContent" class="tab-content">
+
+                <h3>Our Mission</h3>
+
+                <p>
+
+                At HECS, our mission is to provide innovative
+                and sustainable environmental management
+                solutions that foster a cleaner environment
+                while positively contributing to communities
+                and industries.
+
+                </p>
+
+            </div>
+
+            </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- services section - clicking the left menu swaps the content on the right (handled in script.js) -->
+  <section class="services-section section-anim">
+    <div class="services-intro">
+      <span class="badge-tag"><span class="dot"></span><span class="dot"></span> WHAT WE OFFER</span>
+      <h2>Innovative <strong>Solutions</strong><br>for <strong>a Sustainable</strong> Tomorrow</h2>
+    </div>
+
+    <div class="services-wrapper">
+      <!-- Left Menu Panel -->
+      <div class="service-menu">
+        <button class="service-btn active" data-service="turnkey">
+          <span>Turnkey Solutions</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="service-btn" data-service="operations">
+          <span>Operations &amp; Maintenance</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="service-btn" data-service="laboratory">
+          <span>Laboratory Division</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="service-btn" data-service="consultancy">
+          <span>Consultancy Division</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="service-btn" data-service="pstp">
+          <span>Packaged STPs / ETPs</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="service-btn" data-service="bimarketing">
+          <span>BI Marketing &amp; Services</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="service-btn" data-service="training">
+          <span>Education &amp; Training</span><i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Right Display Panel -->
+      <div class="service-display">
+        <div class="service-image">
+          <img id="serviceImage" src="images/trunkey_solutions.png" alt="Service">
+        </div>
+        <div class="service-info">
+          <h3 id="serviceTitle">Turnkey Solutions</h3>
+          <p id="serviceDesc">With over a decade of experience, HECS Turnkey Division specializes in end-to-end water and wastewater treatment solutions, having completed 120+ projects across India and Asia, while adopting the latest technologies to ensure full regulatory compliance.</p>
+          <div class="service-features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <div class="feature-text">
+                <h4 id="feature1Title">Customized Solutions</h4>
+                <p id="feature1Text">Offers tailored treatment systems and designs that are specifically aligned with client requirements and project specifications.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fa-solid fa-globe"></i>
+              </div>
+              <div class="feature-text">
+                <h4 id="feature2Title">Advanced Technology Adoption</h4>
+                <p id="feature2Text">HECS integrates the latest technologies to provide innovative, efficient, and sustainable treatment solutions.</p>
+              </div>
+            </div>
+          </div>
+          <button class="read-more-btn">Read more <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- achievement numbers - these count up from 0 once scrolled into view -->
+  <section class="achievements-section section-anim">
+    <h2>Achievements</h2>
+    <div class="achievements-grid">
+      <div class="achievements-row">
+        <div class="achievement-item">
+          <h3 class="count-up" data-target="10" data-suffix="+">0</h3>
+          <p>Locations Globally</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="count-up" data-target="2000" data-suffix="+">0</h3>
+          <p>Satisfied Customers</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="count-up" data-target="27" data-suffix="+">0</h3>
+          <p>Years of Industrial Experience</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="count-up" data-target="2500" data-suffix="+">0</h3>
+          <p>Employees</p>
+        </div>
+      </div>
+      <div class="achievements-row">
+        <div class="achievement-item">
+          <h3 class="count-up" data-target="2000" data-suffix="+">0</h3>
+          <p>Projects completed</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="count-up" data-target="10" data-suffix="+">0</h3>
+          <p>Accredited Certifications</p>
+        </div>
+        <div class="achievement-item">
+          <h3 class="count-up" data-target="5" data-suffix="+">0</h3>
+          <p>International Partnerships</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- partner/client logos, scrolling sideways on their own (pure CSS animation) -->
+  <section class="partners-section section-anim">
+    <h2>Proudly serving our clients since 1997</h2>
+
+    <div class="partners-carousel">
+      <div class="partners-track track-right">
+        <div class="partner-logo"><img src="partners/reliance.jpeg" alt="Reliance"></div>
+        <div class="partner-logo"><img src="partners/murugappa-group-chairman-steps-down-from-two-group-companies.webp" alt="Murugappa"></div>
+        <div class="partner-logo"><img src="partners/whatsapp-image-2024-07-22-at-35133-pm.jpeg" alt="Apollo"></div>
+        <div class="partner-logo"><img src="partners/whatsapp-image-2024-07-22-at-35132-pm.jpeg" alt="Renault Nissan"></div>
+        <div class="partner-logo"><img src="partners/aditya-birla-group-logo-1.jpg" alt="Aditya Birla Group"></div>
+        <div class="partner-logo"><img src="partners/ongclogo-1.jpg" alt="ONGC"></div>
+        <div class="partner-logo"><img src="partners/reliance.jpeg" alt="Reliance"></div>
+        <div class="partner-logo"><img src="partners/murugappa-group-chairman-steps-down-from-two-group-companies.webp" alt="Murugappa"></div>
+        <div class="partner-logo"><img src="partners/whatsapp-image-2024-07-22-at-35133-pm.jpeg" alt="Apollo"></div>
+        <div class="partner-logo"><img src="partners/whatsapp-image-2024-07-22-at-35132-pm.jpeg" alt="Renault Nissan"></div>
+        <div class="partner-logo"><img src="partners/aditya-birla-group-logo-1.jpg" alt="Aditya Birla Group"></div>
+        <div class="partner-logo"><img src="partners/ongclogo-1.jpg" alt="ONGC"></div>
+      </div>
+    </div>
+
+    <div class="partners-carousel">
+      <div class="partners-track track-left">
+        <div class="partner-logo"><img src="partners/wipro.png" alt="Wipro"></div>
+        <div class="partner-logo"><img src="partners/ceat.png" alt="Ceat"></div>
+        <div class="partner-logo"><img src="partners/hcl.png" alt="HCLTech"></div>
+        <div class="partner-logo"><img src="partners/bpcl-golden-jubilee-logo-1.jpg" alt="Bharat Petroleum"></div>
+        <div class="partner-logo"><img src="partners/fklogo.png" alt="Flipkart"></div>
+        <div class="partner-logo"><img src="partners/hal.png" alt="HAL"></div>
+        <div class="partner-logo"><img src="partners/wipro.png" alt="Wipro"></div>
+        <div class="partner-logo"><img src="partners/ceat.png" alt="Ceat"></div>
+        <div class="partner-logo"><img src="partners/hcl.png" alt="HCLTech"></div>
+        <div class="partner-logo"><img src="partners/bpcl-golden-jubilee-logo-1.jpg" alt="Bharat Petroleum"></div>
+        <div class="partner-logo"><img src="partners/fklogo.png" alt="Flipkart"></div>
+        <div class="partner-logo"><img src="partners/hal.png" alt="HAL"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- recent work carousel - see script.js for how the infinite loop works -->
+  <section class="recent-work-section section-anim">
+    <div class="recent-work-header">
+      <div>
+        <span class="badge-tag"><span class="dot"></span><span class="dot"></span> Our Featured Projects in Action</span>
+        <h2>Recent work</h2>
+      </div>
+      <div class="recent-work-nav">
+        <button id="workPrev"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="workNext"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="recent-work-wrapper">
+      <div class="recent-work-track" id="workTrack">
+        <div class="work-card">
+          <div class="work-card-img-wrap">
+            <img src="images/iit-400x500.jpeg" alt="IIT Hyderabad Project">
+          </div>
+          <span class="work-location"><i class="fa-solid fa-location-dot"></i> Hyderabad</span>
+          <div class="work-info">
+            <span class="work-client">IIT</span>
+            <h3>650 KLD HECS MBR Sewage Treatment Plant at IIT Hyderabad</h3>
+            <p>HECS is proud to announce the successful installation of the 650 KLD HECS Membrane Bioreactor (MBR) Sewage Treatment Plant at IIT Hyderabad.</p>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-card-img-wrap">
+            <img src="images/ongc-400x500.jpeg" alt="ONGC Project">
+          </div>
+          <span class="work-location"><i class="fa-solid fa-location-dot"></i> Rajamundry</span>
+          <div class="work-info">
+            <span class="work-client">ONGC</span>
+            <h3>1MLD Effluent Treatment Plant (ETP) at ONGC</h3>
+            <p>We are proud to announce the successful installation and commissioning of a 1 Million Liters per Day (1 MLD) Effluent Treatment Plant at ONGC.</p>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-card-img-wrap">
+            <img src="images/sipcot-400x500.jpeg" alt="SIPCOT Vallam Project">
+          </div>
+          <span class="work-location"><i class="fa-solid fa-location-dot"></i> Vallam</span>
+          <div class="work-info">
+            <span class="work-client">SIPCOT</span>
+            <h3>2.7 MLD Sewage Treatment Plant at SIPCOT Vallam</h3>
+            <p>HECS is proud to announce the successful completion of a state-of-the-art Sewage Treatment Plant (STP) at SIPCOT Vallam.</p>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-card-img-wrap">
+            <img src="images/pstp.jpeg" alt="Global Pharma Project">
+          </div>
+          <span class="work-location"><i class="fa-solid fa-location-dot"></i> Chennai</span>
+          <div class="work-info">
+            <span class="work-client">Global Pharma Health Care</span>
+            <h3>6KLD PSTP &amp; 20KLD PETP at Global Pharma Health Care Pvt. Ltd.</h3>
+            <p>HECS has successfully installed a 6 KLD Package Sewage Treatment Plant (PSTP) and a 20 KLD Package Effluent Treatment Plant at Global Pharma.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- news & events auto-sliding cards -->
+  <section class="news-section section-anim">
+    <div class="news-header">
+      <div class="news-intro">
+        <span class="news-badge"><span class="dot-1"></span><span class="dot-2"></span><span class="dot-3"></span> Latest Updates</span>
+        <h2>News &amp; Events</h2>
+        <p>Explore the insights and trends shaping our industry</p>
+        <a href="#" class="see-all-link">See all articles <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <div class="news-slider-wrapper">
+        <div class="news-track" id="newsTrack">
+          <div class="news-card">
+            <div class="news-card-img">
+              <img src="images/new_evn1.png" alt="News">
+              <span class="news-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+            <div class="news-card-body">
+              <span class="news-tag">News &amp; Events</span>
+              <h3>HECS Secures CRZ Clearance for Mamallan Reservoir Project Near Nemmeli</h3>
+              <p>HECS, with IIT Madras and Anna University, secures CRZ clearance for the Mamallan Reservoir Project near Nemmeli to strengthen water security and flood management.</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img">
+              <img src="images/education-training.jpeg" alt="News">
+              <span class="news-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+            <div class="news-card-body">
+              <span class="news-tag">News &amp; Events</span>
+              <h3>HECS Hosts Green Skill Development Programme for University of Madras Students</h3>
+              <p>HECS conducted a Green Skill Development Programme on Waste Optimization Professional for university students under a MoEF&amp;CC funded initiative.</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img">
+              <img src="images/new_evn3.png" alt="News">
+              <span class="news-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+            <div class="news-card-body">
+              <span class="news-tag">News &amp; Events</span>
+              <h3>Science Expo 2026 at Hindustan International School: HECS Supports Student Innovation</h3>
+              <p>HECS supported young innovators at Science Expo 2026, encouraging student-led ideas in sustainability and environmental management.</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-card-img">
+              <img src="images/new_evn2.png" alt="News">
+              <span class="news-zoom-icon"><i class="fa-solid fa-expand"></i></span>
+            </div>
+            <div class="news-card-body">
+              <span class="news-tag">News &amp; Events</span>
+              <h3>HECS Champions Sustainable Water Management at Water Today Expo 2026, Chennai</h3>
+              <p>HECS showcased its next-gen, IoT-powered packaged wastewater treatment solutions at Water Today Expo 2026, Chennai Trade Centre.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact form + embedded google map -->
+  <section class="contact-section">
+    <div class="contact-form-panel">
+      <div class="contact-form-card">
+        <div class="contact-intro">
+          <h2>Get in touch</h2>
+          <p>Do you want to know more or contact our sales department?</p>
+        </div>
+        <form class="contact-form">
+          <div class="form-group">
+            <label>First Name*</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name*</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Phone*</label>
+            <input type="tel" required>
+          </div>
+          <div class="form-group">
+            <label>Email*</label>
+            <input type="email" required>
+          </div>
+          <div class="form-group">
+            <label>Company*</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Location*</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Description*</label>
+            <textarea required></textarea>
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn-submit">Submit</button>
+            <button type="reset" class="btn-reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="contact-map-panel">
+      <div class="contact-map-card">
+        <iframe
+          src="https://www.google.com/maps?q=Hubert+Enviro+Care+Systems+Ltd,+A21+Thiru+Vi+Ka+Industrial+Estate+Guindy+Chennai&output=embed"
+          width="100%"
+          height="100%"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer with links and address -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/footer-logo.jpg" alt="HECS" class="footer-logo">
+        <p>A-21, III Phase, Behind Lions Club School, Thiru Vi Ka Industrial Estate, Guindy, Chennai — 600 032, Tamilnadu, India.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon-wrap"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="social-icon-wrap"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon-wrap"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="social-icon-wrap"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Main Menu</h4>
+        <a href="#">Home</a>
+        <a href="#">About us</a>
+        <a href="#">Careers</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#">Turnkey Solutions</a>
+        <a href="#">Laboratory Services</a>
+        <a href="#">Consultancy Services</a>
+        <a href="#">Operation and Maintenance</a>
+        <a href="#">Education &amp; Training</a>
+        <a href="#">BI Marketing and Services</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">News &amp; Events</a>
+        <a href="#">Blogs</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>HECS Groups</h4>
+        <a href="#">HECS</a>
+        <a href="#">Purity Portal</a>
+        <a href="#">BI Group</a>
+        <a href="#">HECS PSTP</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Hubert Enviro Care Systems Ltd. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- whatsapp / scroll-to-top / message buttons that float on the bottom-right -->
+  <div class="floating-buttons">
+    <div class="whatsapp-btn">
+      <i class="fa-brands fa-whatsapp"></i>
+    </div>
+
+    <div class="scroll-top-btn" id="scrollTopBtn">
+      <div class="scroll-box">
+        <i class="fa-solid fa-arrow-up"></i>
+      </div>
+    </div>
+
+    <div class="message-btn">
+      <i class="fa-regular fa-message"></i>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
