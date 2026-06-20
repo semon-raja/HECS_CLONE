@@ -6,11 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HECS — India's Leading Environmental Solutions Provider</title>
 
-  <!-- Satoshi font — matches original hecs.in -->
-  <link rel="preconnect" href="https://api.fontshare.com">
+  <!-- <link rel="preconnect" href="https://api.fontshare.com"> -->
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700,900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -64,49 +63,64 @@
       <span></span>
     </button>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#">Home</a></li>
-      <li class="nav-item dropdown">
-        <a href="#">
-          About us
-          <i class="fa-solid fa-chevron-down"></i>
-        </a>
-        <div class="mega-dropdown">
-          <a href="#">Board of Directors</a>
-          <a href="#">Accreditations</a>
-          <a href="#">Awards and Accolades</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a href="#">
-          Our Products & Services
-          <i class="fa-solid fa-chevron-down"></i>
-        </a>
-        <div class="mega-dropdown">
-          <a href="#">Turnkey Solutions</a>
-          <a href="#">Laboratory Services</a>
-          <a href="#">Consultancy Services</a>
-          <a href="#">Operation and Maintenance</a>
-          <a href="#">Packaged Sewage Treatment Plants</a>
-          <a href="#">BI Marketing and Services</a>
-        </div>
-      </li>
-      <li><a href="#">Careers</a></li>
-      <li class="nav-item dropdown">
-        <a href="#">
-          Resources
-          <i class="fa-solid fa-chevron-down"></i>
-        </a>
-        <div class="mega-dropdown">
-          <a href="#">News & Events</a>
-          <a href="#">Blog</a>
-          <a href="#">Regulations</a>
-          <a href="#">Social Media</a>
-          <a href="#">HECS Plantation Drive</a>
-        </div>
-      </li>
-      <li><a href="#">CSR</a></li>
-    </ul>
+    <div class="nav-panel" id="navPanel">
+      <div class="nav-panel-header">
+        <img src="images/logo-local.png" alt="HECS Logo" class="nav-panel-logo">
+        <button class="nav-close" id="navClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li class="nav-item dropdown">
+          <div class="dropdown-row">
+            <a href="about.html">About us</a>
+            <button class="dropdown-toggle" type="button" aria-label="Toggle About us submenu">
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="mega-dropdown">
+            <a href="#">Board of Directors</a>
+            <a href="#">Accreditations</a>
+            <a href="#">Awards and Accolades</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <div class="dropdown-row">
+            <a href="product.html">Our Products & Services</a>
+            <button class="dropdown-toggle" type="button" aria-label="Toggle Our Products & Services submenu">
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="mega-dropdown">
+            <a href="#">Turnkey Solutions</a>
+            <a href="#">Laboratory Services</a>
+            <a href="#">Consultancy Services</a>
+            <a href="#">Operation and Maintenance</a>
+            <a href="#">Packaged Sewage Treatment Plants</a>
+            <a href="#">BI Marketing and Services</a>
+          </div>
+        </li>
+        <li><a href="#">Careers</a></li>
+        <li class="nav-item dropdown">
+          <div class="dropdown-row">
+            <a href="#">Resources</a>
+            <button class="dropdown-toggle" type="button" aria-label="Toggle Resources submenu">
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="mega-dropdown">
+            <a href="#">News & Events</a>
+            <a href="#">Blog</a>
+            <a href="#">Regulations</a>
+            <a href="#">Social Media</a>
+            <a href="#">HECS Plantation Drive</a>
+          </div>
+        </li>
+        <li><a href="#">CSR</a></li>
+      </ul>
+    </div>
 
     <a href="#" class="nav-cta">Contact us</a>
 
@@ -118,7 +132,7 @@
   <div class="nav-overlay" id="navOverlay"></div>
 
 </div>
-  <!-- the big sliding banner at the top of the page -->
+  <!-- the big sliding banner at the top of the page HERO SECTION -->
   <section class="hero">
     <div class="owl-carousel banner-slider">
 
@@ -592,8 +606,8 @@
 
       <div class="footer-col">
         <h4>Main Menu</h4>
-        <a href="#">Home</a>
-        <a href="#">About us</a>
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
         <a href="#">Careers</a>
       </div>
 
@@ -646,6 +660,6 @@
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ $(document).ready(function () {
     items: 1,
     loop: true,
     autoplay: true,
-    autoplayTimeout: 4500,
+    autoplayTimeout: 3500,
     autoplayHoverPause: true,
     nav: true,
     dots: false,
@@ -26,7 +26,7 @@ $(document).ready(function () {
     $('.overlay-card').css({ opacity: 0, transform: 'translateY(20px)' });
     setTimeout(function () {
       $('.overlay-card').css({
-        transition: 'opacity 0.6s ease, transform 0.6s ease',
+        transition: 'opacity 0.9s ease, transform 0.9s ease',
         opacity: 1,
         transform: 'translateY(0)'
       });
@@ -47,6 +47,8 @@ $(document).ready(function () {
 
     const missionContent =
     document.getElementById('missionContent');
+
+  if (visionBtn && missionBtn && visionContent && missionContent) {
 
 
     visionBtn.addEventListener('click',()=>{
@@ -75,6 +77,7 @@ $(document).ready(function () {
     visionContent.classList.remove('active');
 
     });
+  }
 
 
   /* ============================================================
@@ -195,6 +198,38 @@ $(document).ready(function () {
   // Init first button icon
   const firstBtn = document.querySelector('.service-btn.active i');
   if (firstBtn) firstBtn.style.opacity = '1';
+
+    /* ============================================================
+     COUNT-UP ANIMATION (IntersectionObserver)
+     ============================================================ */
+  function countUp(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2000;
+    const step = Math.ceil(target / (duration / 16));
+    let current = 0;
+
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      el.textContent = current.toLocaleString() + suffix;
+    }, 16);
+  }
+
+  const countEls = document.querySelectorAll('.count-up');
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = 'true';
+        countUp(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  countEls.forEach(el => countObserver.observe(el));
 
 
   /* ============================================================
@@ -340,41 +375,11 @@ $(document).ready(function () {
   }
 
 
-  /* ============================================================
-     FIX #26 — COUNT-UP ANIMATION (IntersectionObserver)
-     ============================================================ */
-  function countUp(el) {
-    const target = parseInt(el.dataset.target, 10);
-    const suffix = el.dataset.suffix || '';
-    const duration = 2000;
-    const step = Math.ceil(target / (duration / 16));
-    let current = 0;
 
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      el.textContent = current.toLocaleString() + suffix;
-    }, 16);
-  }
-
-  const countEls = document.querySelectorAll('.count-up');
-  const countObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.dataset.counted) {
-        entry.target.dataset.counted = 'true';
-        countUp(entry.target);
-      }
-    });
-  }, { threshold: 0.4 });
-
-  countEls.forEach(el => countObserver.observe(el));
 
 
   /* ============================================================
-     FIX #41 — SCROLL-TRIGGERED SECTION FADE-IN
+     SCROLL-TRIGGERED SECTION FADE-IN
      ============================================================ */
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -409,26 +414,49 @@ $(document).ready(function () {
      FIX #47 — HAMBURGER MENU
      ============================================================ */
   const hamburger  = document.getElementById('hamburger');
+  const navPanel   = document.getElementById('navPanel');
   const navLinks   = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
+  const navClose   = document.getElementById('navClose');
+
+  function closeAllDropdowns() {
+    navLinks.querySelectorAll('.dropdown.mobile-open').forEach(item => {
+      item.classList.remove('mobile-open');
+    });
+  }
 
   function openNav() {
-    navLinks.classList.add('open');
+    navPanel.classList.add('open');
     navOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeNav() {
-    navLinks.classList.remove('open');
+    navPanel.classList.remove('open');
     navOverlay.classList.remove('open');
     document.body.style.overflow = '';
+    closeAllDropdowns();
   }
 
   hamburger.addEventListener('click', openNav);
   navOverlay.addEventListener('click', closeNav);
+  if (navClose) navClose.addEventListener('click', closeNav);
 
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeNav);
+  });
+
+  navLinks.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const item = toggle.closest('.dropdown');
+      const isOpen = item.classList.contains('mobile-open');
+
+      closeAllDropdowns();
+
+      if (!isOpen) {
+        item.classList.add('mobile-open');
+      }
+    });
   });
 
   /* ==================================
@@ -527,8 +555,10 @@ const offset =
 totalLength -
 (progress * totalLength);
 
-border.style.strokeDashoffset =
-offset;
+if (border) {
+  border.style.strokeDashoffset =
+  offset;
+}
 
 });
 
