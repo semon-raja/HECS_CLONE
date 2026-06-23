@@ -576,4 +576,122 @@ behavior:"smooth"
 
 });
 
+// EMPLOYEE TESTIMONIALS — infinite loop slider (clone-based)
+(function () {
+  const track    = document.getElementById('testimonialsTrack');
+  const dotsWrap = document.getElementById('testimonialsDots');
+  if (!track || !dotsWrap) return;
+
+  // ── helpers ──────────────────────────────────────────────
+  function getVisible() {
+    if (window.innerWidth <= 600) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 3;
+  }
+
+  // card width + gap (gap is set to 24px in CSS)
+  function cardStep() {
+    const c = track.querySelector('.tcard');
+    return c ? c.getBoundingClientRect().width + 24 : 0;
+  }
+
+  // ── build ────────────────────────────────────────────────
+  const origCards = Array.from(track.querySelectorAll('.tcard'));
+  const origCount = origCards.length;   // 8 real cards
+
+  // Prepend & append one full set of clones for seamless wrapping
+  origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+  [...origCards].reverse().forEach(c =>
+    track.insertBefore(c.cloneNode(true), track.firstChild)
+  );
+
+  // total cards in DOM = origCount * 3
+  // logical index 0 = first REAL card (after the prepended clones)
+  let logicalIdx = 0;   // tracks which real card is "first visible"
+  let isSnapping  = false;
+  let timer;
+
+  // ── dots ─────────────────────────────────────────────────
+  function buildDots() {
+    dotsWrap.innerHTML = '';
+    const visible = getVisible();
+    const steps   = Math.ceil(origCount / visible);
+    for (let i = 0; i < steps; i++) {
+      const d = document.createElement('button');
+      d.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to group ' + (i + 1));
+      d.addEventListener('click', () => { jumpTo(i * visible); resetTimer(); });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function updateDots() {
+    const visible = getVisible();
+    const steps   = Math.ceil(origCount / visible);
+    const dotIdx  = Math.floor((logicalIdx % origCount) / visible) % steps;
+    dotsWrap.querySelectorAll('.testimonial-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === dotIdx)
+    );
+  }
+
+  // ── positioning ──────────────────────────────────────────
+  // DOM offset of logical card 0 = origCount (the clones sit before it)
+  function domOffset() { return origCount + logicalIdx; }
+
+  function setPos(animate) {
+    track.style.transition = animate
+      ? 'transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)'
+      : 'none';
+    track.style.transform = `translateX(-${domOffset() * cardStep()}px)`;
+  }
+
+  // Jump directly to a logical card index (no animation, used for dot clicks)
+  function jumpTo(idx) {
+    logicalIdx = ((idx % origCount) + origCount) % origCount;
+    setPos(true);
+    updateDots();
+  }
+
+  // ── advance one step ─────────────────────────────────────
+  function next() {
+    if (isSnapping) return;
+    logicalIdx++;
+    setPos(true);
+    updateDots();
+
+    // After animation ends, silently snap back if we've gone past real cards
+    track.addEventListener('transitionend', function snap() {
+      track.removeEventListener('transitionend', snap);
+      if (logicalIdx >= origCount) {
+        logicalIdx = logicalIdx % origCount;
+        setPos(false);          // instant reposition — invisible to user
+      }
+      isSnapping = false;
+    });
+
+    isSnapping = true;
+  }
+
+  // ── timer ────────────────────────────────────────────────
+  function startTimer() { timer = setInterval(next, 4000); }
+  function resetTimer()  { clearInterval(timer); startTimer(); }
+
+  // ── init ─────────────────────────────────────────────────
+  setPos(false);   // position without animation on load
+  buildDots();
+  updateDots();
+  startTimer();
+
+  // Pause on hover
+  track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
+  track.parentElement.addEventListener('mouseleave', startTimer);
+
+  // Resize: rebuild dots, re-snap instantly
+  window.addEventListener('resize', () => {
+    buildDots();
+    updateDots();
+    setPos(false);
+  });
+})();
+
 });
