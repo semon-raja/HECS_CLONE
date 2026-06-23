@@ -695,3 +695,115 @@ behavior:"smooth"
 })();
 
 });
+
+
+/* ============================================================
+   CSR PROJECTS INFINITE LOOP CAROUSEL
+   ============================================================ */
+(function () {
+  const track   = document.getElementById('csrTrack');
+  const prevBtn = document.getElementById('csrPrev');
+  const nextBtn = document.getElementById('csrNext');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  /* ---- Clone slides for seamless infinite loop ---- */
+  const origCards = Array.from(track.querySelectorAll('.csr-project-card'));
+  const TOTAL     = origCards.length; // 6 real slides
+
+  // Prepend clones of last N and append clones of first N (N = visibleCount max = 3)
+  const CLONE_COUNT = 3;
+
+  // Append clones of first CLONE_COUNT slides at end
+  origCards.slice(0, CLONE_COUNT).forEach(function (card) {
+    track.appendChild(card.cloneNode(true));
+  });
+  // Prepend clones of last CLONE_COUNT slides at start
+  origCards.slice(-CLONE_COUNT).reverse().forEach(function (card) {
+    track.insertBefore(card.cloneNode(true), track.firstChild);
+  });
+
+  /* ---- State ---- */
+  var currentIndex  = CLONE_COUNT; // start at first real slide (offset by prepended clones)
+  var isTransitioning = false;
+  var autoTimer     = null;
+
+  function getVisibleCount() {
+    if (window.innerWidth <= 580) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 3;
+  }
+
+  function getCardWidth() {
+    var cards = track.querySelectorAll('.csr-project-card');
+    if (!cards.length) return 0;
+    var gap = parseFloat(getComputedStyle(track).gap) || 28;
+    return cards[0].offsetWidth + gap;
+  }
+
+  function allCards() {
+    return track.querySelectorAll('.csr-project-card');
+  }
+
+  /* Move track to currentIndex with animation */
+  function slideTo(index, animate) {
+    if (animate === false) {
+      track.style.transition = 'none';
+    } else {
+      track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+    }
+    track.style.transform = 'translateX(-' + (index * getCardWidth()) + 'px)';
+    currentIndex = index;
+  }
+
+  /* After a transition ends, silently jump if we're in the clone zone */
+  track.addEventListener('transitionend', function () {
+    isTransitioning = false;
+    var visible = getVisibleCount();
+    var total   = allCards().length; // includes clones
+
+    // If we slid into the appended clones zone
+    if (currentIndex >= TOTAL + CLONE_COUNT) {
+      slideTo(CLONE_COUNT, false);
+    }
+    // If we slid into the prepended clones zone
+    if (currentIndex < CLONE_COUNT) {
+      slideTo(TOTAL + CLONE_COUNT - visible, false);
+    }
+  });
+
+  function next() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    slideTo(currentIndex + 1, true);
+  }
+
+  function prev() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    slideTo(currentIndex - 1, true);
+  }
+
+  function startAuto() {
+    stopAuto();
+    autoTimer = setInterval(next, 3500);
+  }
+
+  function stopAuto() {
+    if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  /* Set initial position without animation */
+  slideTo(CLONE_COUNT, false);
+
+  nextBtn.addEventListener('click', function () { next(); startAuto(); });
+  prevBtn.addEventListener('click', function () { prev(); startAuto(); });
+
+  track.addEventListener('mouseenter', stopAuto);
+  track.addEventListener('mouseleave', startAuto);
+
+  window.addEventListener('resize', function () {
+    slideTo(currentIndex, false);
+  });
+
+  startAuto();
+})();
