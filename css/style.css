@@ -399,6 +399,13 @@ color:#101828;
   padding: 4px;
 }
 
+/* Desktop: cluster just shows the CTA button (hamburger hidden inside) */
+.nav-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .hamburger span {
   display: block;
   width: 24px;
@@ -2553,9 +2560,9 @@ margin-bottom:34px;
 
 .career-openings p{
 
-font-size:20px;
+font-size:22px;
 
-font-weight:400;
+font-weight:600;
 
 line-height:1.7;
 
@@ -2689,7 +2696,7 @@ background:#5ab03d;
 
 .life-hecs-header h2 {
   font-size: 52px;
-  font-weight: 200;
+  font-weight: 500;
   color: var(--dark);
   line-height: 1.1;
   margin-bottom: 22px;
@@ -3051,14 +3058,22 @@ margin:40px auto 80px;
 
 width:100%;
 
-height:550px;
+height:auto;
 
-object-fit:cover;
+object-fit:unset;
 
 display:block;
 
 border-radius:24px;
 
+}
+
+/* On desktop keep a max-height so it doesn't become too tall */
+@media (min-width: 769px) {
+  .csr-banner-img {
+    height: 550px;
+    object-fit: cover;
+  }
 }
 
 
@@ -3068,7 +3083,7 @@ CSR INTRO
 
 .csr-intro-section{
 
-padding:0 0 100px;
+padding:0 0 10px;
 
 }
 
@@ -3086,9 +3101,9 @@ text-align:center;
 
 .csr-intro-inner h2{
 
-font-size:64px;
+font-size:52px;
 
-font-weight:700;
+font-weight:500;
 
 line-height:1.1;
 
@@ -3098,16 +3113,15 @@ margin-bottom:30px;
 
 .csr-intro-inner p{
 
-font-size:20px;
-
-line-height:1.8;
-
+font-size:16px;
+text-align: justify;
+line-height:1.3;
 color:#5c6575;
 
 }
 
   .ceo-csr{
-  padding:100px 0;
+  padding:40px 0;
   background:#fff;
 }
 
@@ -3134,6 +3148,15 @@ color:#5c6575;
   flex:1;
 }
 
+.ceo-csr-text h2{
+  font-size: 46px;
+}
+
+.ceo-csr-text p{
+  font-size: 20px;
+  text-align: justify;
+}
+
 .ceo-csr-img img{
   width:100%;
   border-radius:20px;
@@ -3146,8 +3169,8 @@ max-width:1300px;
 margin:auto;
 display:flex;
 align-items:center;
-gap:80px;
-padding:100px 0;
+gap:40px;
+padding:50px 0;
 }
 
 .csr-left{
@@ -3181,7 +3204,7 @@ transform:translateY(-10px);
 }
 
 .csr-left h2{
-font-size:48px;
+font-size:54px;
 margin-bottom:25px;
 line-height:1.2;
 }
@@ -3210,7 +3233,7 @@ margin-bottom:20px;
 }
 .sdg-section{
 
-padding:120px 0;
+padding:50px 0;
 
 background:#fff;
 
@@ -3360,7 +3383,7 @@ grid-template-columns:1fr;
 
 .csr-left h2{
 
-font-size:34px;
+font-size:48px;
 
 }
 
@@ -3402,20 +3425,28 @@ font-size:34px;
     padding: 0 14px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
 
   .logo { flex: 1; }
   .logo img { height: 60px; }
 
+  /* Right-side cluster: Contact us + hamburger */
+  .nav-right-cluster {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   .nav-cta {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px 18px;
-    border-radius: 14px;
-    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 13px;
     white-space: nowrap;
-    margin-right: 12px;
+    margin-right: 0;
   }
 
   .hamburger {
@@ -3620,7 +3651,7 @@ font-size:34px;
   .top-bar-right { display: none; }
 
   .navbar { justify-content: space-between; }
-  .nav-cta { order: 2; }
+  .nav-cta { order: 2; font-size: 12px; padding: 9px 13px; }
   .hamburger { order: 3; }
 
   /* -- home: sections constrained to 92% width -- */
@@ -3663,7 +3694,7 @@ font-size:34px;
   .follow-us-bar {
     flex-wrap: wrap;
     justify-content: center;
-    padding: 14px 18px;
+    padding: 10px 18px;
     position: relative;
     top: -60px;
     margin-bottom: 0;
@@ -3783,8 +3814,8 @@ font-size:16px;
   .life-hecs { padding: 50px 0 60px; }
   .life-hecs-inner { width: 92%; }
   .life-hecs-header { margin-bottom: 40px; }
-  .life-hecs-header h2 { font-size: 30px; }
-  .life-hecs-header p { font-size: 16px; }
+  .life-hecs-header h2 { font-size: 40px; }
+  .life-hecs-header p { font-size: 19px;  }
   .life-col-img { height: 220px; border-radius: 12px; }
   .life-label-title { font-size: 17px; }
   .life-desc { font-size: 15px; }
@@ -3943,14 +3974,14 @@ font-size:16px;
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 900px) {
+@media (max-width: 1024px) and (min-width: 769px) {
   .csr-project-card {
     flex: 0 0 calc((100% - 28px) / 2);
   }
   .csr-projects-header h2 { font-size: 30px; }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 768px) {
   .csr-project-card {
     flex: 0 0 100%;
   }

@@ -728,8 +728,8 @@ behavior:"smooth"
   var autoTimer     = null;
 
   function getVisibleCount() {
-    if (window.innerWidth <= 580) return 1;
-    if (window.innerWidth <= 900) return 2;
+    if (window.innerWidth <= 768) return 1;
+    if (window.innerWidth <= 1024) return 2;
     return 3;
   }
 
