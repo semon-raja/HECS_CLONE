@@ -576,6 +576,61 @@ behavior:"smooth"
 
 });
 
+// LIFE AT HECS — mobile auto-sliding carousel (≤600 px only)
+(function () {
+  var track  = document.getElementById('lifeHecsTrack');
+  if (!track) return;
+
+  var total    = track.querySelectorAll('.life-col').length;  // 3
+  var current  = 0;
+  var timer    = null;
+  var isMobile = false;
+
+  // Slide to index
+  function goTo(idx) {
+    current = ((idx % total) + total) % total;
+    track.style.transform = 'translateX(-' + (current * (100 / total)) + '%)';
+  }
+
+  function next() { goTo(current + 1); }
+
+  function startTimer() { timer = setInterval(next, 3500); }
+  function resetTimer()  { clearInterval(timer); startTimer(); }
+
+  // Only activate on mobile (≤600px)
+  function checkBreakpoint() {
+    var mobile = window.innerWidth <= 600;
+    if (mobile && !isMobile) {
+      isMobile = true;
+      goTo(0);
+      startTimer();
+    } else if (!mobile && isMobile) {
+      isMobile = false;
+      clearInterval(timer);
+      track.style.transform = '';   // reset so CSS grid takes over
+    }
+  }
+
+  checkBreakpoint();
+  window.addEventListener('resize', checkBreakpoint);
+
+  // Pause on hover
+  track.parentElement.addEventListener('mouseenter', function () { clearInterval(timer); });
+  track.parentElement.addEventListener('mouseleave', function () { if (isMobile) startTimer(); });
+
+  // Swipe support
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+    clearInterval(timer);
+  }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { diff > 0 ? next() : goTo(current - 1); }
+    if (isMobile) resetTimer();
+  }, { passive: true });
+})();
+
 // EMPLOYEE TESTIMONIALS — infinite loop slider (clone-based)
 (function () {
   const track    = document.getElementById('testimonialsTrack');
