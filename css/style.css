@@ -1,4 +1,7 @@
-/* ---- Reset & Base*/
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -37,10 +40,16 @@ body {
   background: var(--white);
   overflow-x: hidden;
 }
+body{
+
+padding-top:123px;
+
+}
 
 /* ============================================================
-   Scroll-triggered fade-in animations
+   SCROLL-TRIGGERED FADE-IN ANIMATIONS
    ============================================================ */
+
 .section-anim {
   opacity: 0;
   transform: translateY(80px);
@@ -53,8 +62,9 @@ body {
 }
 
 /* ============================================================
-   TOP BAR 
+   TOP BAR
    ============================================================ */
+
 .header-wrapper{
 
 position:fixed;
@@ -132,8 +142,9 @@ transition:transform .35s ease;
 }
 
 /* ============================================================
-   NAVBAR 
+   NAVBAR
    ============================================================ */
+
 .navbar {
   position: relative;
   height: 82px;
@@ -426,6 +437,7 @@ color:#101828;
 /* ============================================================
    HERO (FIX #10 — viewport-relative height)
    ============================================================ */
+
 .hero {
  
   position: relative;
@@ -434,11 +446,6 @@ color:#101828;
   overflow: hidden;
 }
 
-body{
-
-padding-top:123px;
-
-}
 
 .owl-carousel,
 .owl-stage-outer,
@@ -572,8 +579,9 @@ padding-top:123px;
 }
 
 /* ============================================================
-   ABOUT SECTION 
+   ABOUT SECTION
    ============================================================ */
+
 .about-section {
 
   background: var(--off-white);
@@ -741,8 +749,9 @@ display:block;
 }
 
 /* ============================================================
-   SERVICES SECTION 
+   SERVICES SECTION
    ============================================================ */
+
 .services-section {
   width: 100%;
   padding: 70px 0 90px;
@@ -1001,6 +1010,7 @@ line-height:1.7;
 /* ============================================================
    ACHIEVEMENTS SECTION
    ============================================================ */
+
 .achievements-section {
   background: var(--green-mid);
   padding: 100px 0;
@@ -1057,6 +1067,7 @@ line-height:1.7;
 /* ============================================================
    PARTNERS SECTION (FIX #29 #30)
    ============================================================ */
+
 .partners-section {
   padding: 90px 0 80px;
   background: var(--white);
@@ -1144,6 +1155,7 @@ line-height:1.7;
 /* ============================================================
    RECENT WORK SECTION (FIX #31 #32)
    ============================================================ */
+
 .recent-work-section {
   width: 88%;
   max-width: 1380px;
@@ -1296,8 +1308,9 @@ line-height:1.7;
 }
 
 /* ============================================================
-   NEWS & EVENTS SECTION 
+   NEWS & EVENTS SECTION
    ============================================================ */
+
 .news-section {
   width: 100%;
   max-width: 100%;
@@ -1483,6 +1496,7 @@ line-height:1.7;
 /* ============================================================
    CONTACT SECTION (FIX #45)
    ============================================================ */
+
 .contact-section {
   display: flex;
   min-height: 640px;
@@ -1626,7 +1640,8 @@ line-height:1.7;
 
 /* ============================================================
    FOOTER
-============================================================ */
+   ============================================================ */
+
 
 .site-footer{
 position:relative;
@@ -1813,6 +1828,7 @@ color:#fff;
    FLOATING BUTTONS (FIX #37 #38)
    ============================================================ */
 
+
 .floating-buttons{
 
 position:fixed;
@@ -1943,6 +1959,7 @@ color:#fff;
 /* ============================================================
    ABOUT PAGE
    ============================================================ */
+
 
 /* ---- Page header / breadcrumb banner ---- */
 .page-header {
@@ -2230,7 +2247,10 @@ color:#fff;
   box-shadow: 0 18px 45px rgba(0,0,0,.12);
 }
 
-/* PRODUCTS INTRO */
+/* ============================================================
+   PRODUCTS INTRO
+   ============================================================ */
+
 
 .products-intro{
 
@@ -2278,9 +2298,10 @@ color:#101828;
 
 }
 
-/* ==========================================
-PRODUCT CARDS
-========================================== */
+/* ============================================================
+   PRODUCT CARDS
+   ============================================================ */
+
 
 .product-cards{
 
@@ -2476,9 +2497,10 @@ transform:translateY(0);
 
 }
 
-/* ===========================
-CURRENT OPENINGS
-=========================== */
+/* ============================================================
+   CURRENT OPENINGS
+   ============================================================ */
+
 
 .career-openings{
 
@@ -2673,9 +2695,10 @@ background:#5ab03d;
 
 }
 
-/* ===========================
+/* ============================================================
    LIFE AT HECS
-=========================== */
+   ============================================================ */
+
 
 .life-hecs {
   padding: 80px 0 100px;
@@ -2777,9 +2800,10 @@ background:#5ab03d;
   margin: 0;
 }
 
-/* ===========================
+/* ============================================================
    EMPLOYEE TESTIMONIALS
-=========================== */
+   ============================================================ */
+
 
 .testimonials-section {
   padding: 90px 0 110px;
@@ -2947,9 +2971,10 @@ background:#5ab03d;
   background: var(--green);
 }
 
-/* resources page */
+/* ============================================================
+   BLOG SECTION (RESOURCES PAGE)
+   ============================================================ */
 
-/* ---- Blog Section ---- */
     .blog-section {
       width: 100%;
       background: var(--white);
@@ -3040,9 +3065,10 @@ background:#5ab03d;
     width: fit-content;
   }
 
-/* ==========================
-CSR BANNER
-========================== */
+/* ============================================================
+   CSR BANNER
+   ============================================================ */
+
 
 .csr-banner-hero{
 
@@ -3068,18 +3094,10 @@ border-radius:24px;
 
 }
 
-/* On desktop keep a max-height so it doesn't become too tall */
-@media (min-width: 769px) {
-  .csr-banner-img {
-    height: 550px;
-    object-fit: cover;
-  }
-}
+/* ============================================================
+   CSR INTRO
+   ============================================================ */
 
-
-/* ==========================
-CSR INTRO
-========================== */
 
 .csr-intro-section{
 
@@ -3119,6 +3137,10 @@ line-height:1.3;
 color:#5c6575;
 
 }
+
+/* ============================================================
+   CSR — CEO MESSAGE
+   ============================================================ */
 
   .ceo-csr{
   padding:40px 0;
@@ -3162,6 +3184,10 @@ color:#5c6575;
   border-radius:20px;
   display:block;
 }
+
+/* ============================================================
+   CSR — EDUCATIONAL INFRASTRUCTURE
+   ============================================================ */
 
 .csr-container{
 width:85%;
@@ -3215,6 +3241,10 @@ line-height:1.8;
 color:#5c6575;
 }
 
+/* ============================================================
+   CSR — COMMITMENT
+   ============================================================ */
+
 .commitment-section{
 padding:100px 0;
 background:#69c04a;
@@ -3231,6 +3261,11 @@ color:#fff;
 font-size:48px;
 margin-bottom:20px;
 }
+
+/* ============================================================
+   CSR — SDG GOALS
+   ============================================================ */
+
 .sdg-section{
 
 padding:50px 0;
@@ -3339,62 +3374,148 @@ color:#5c6575;
 
 }
 
-@media(max-width:900px){
+/* ============================================================
+   CSR PROJECTS SLIDER SECTION
+   ============================================================ */
 
-.ceo-csr-inner{
-
-flex-direction:column;
-
-padding:50px;
-
+.csr-projects-section {
+  padding: 80px 0 90px;
+  background: #fff;
 }
 
-.csr-container{
-
-flex-direction:column;
-
+.csr-projects-inner {
+  width: 88%;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-.sdg-grid{
-
-grid-template-columns:1fr 1fr;
-
+.csr-projects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
 }
 
+.csr-projects-header h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0e1a0e;
+  margin: 0;
 }
 
-@media(max-width:600px){
-
-.ceo-csr-inner{
-
-width:92%;
-
-padding:35px 25px;
-
-gap:40px;
-
+.csr-projects-nav {
+  display: flex;
+  gap: 12px;
 }
 
-.sdg-grid{
-
-grid-template-columns:1fr;
-
+.csr-prev-btn,
+.csr-next-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid #ccc;
+  background: #fff;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
 }
 
-.csr-left h2{
-
-font-size:48px;
-
+.csr-prev-btn:hover,
+.csr-next-btn:hover {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #2e7d32;
 }
 
+/* Viewport — hides overflow so only 3 cards show */
+.csr-slider-viewport {
+  overflow: hidden;
 }
 
+.csr-slider-track {
+  display: flex;
+  gap: 28px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
 
+/* Each card takes roughly 1/3 of the viewport */
+.csr-project-card {
+  flex: 0 0 calc((100% - 56px) / 3);
+  min-width: 0;
+  transition: transform 0.35s ease;
+  cursor: pointer;
+}
+
+.csr-project-card:hover {
+  transform: translateY(-10px);
+}
+
+.csr-project-img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  aspect-ratio: 4 / 3;
+}
+
+.csr-project-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+/* Zoom on hover */
+.csr-project-card:hover .csr-project-img-wrap img {
+  transform: scale(1.07);
+}
+
+.csr-label {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #fff;
+  color: #2e7d32;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.csr-project-card h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #0e1a0e;
+  line-height: 1.45;
+  margin: 0 0 14px;
+}
+
+.csr-keep-reading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #2e7d32;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap 0.2s;
+}
+
+.csr-keep-reading:hover {
+  gap: 12px;
+}
 
 /* ============================================================
    RESPONSIVENESS
-   One @media block per breakpoint — desktop -> tablet -> phone.
    ============================================================ */
+
 
 /* ---- Small desktop / large tablet (<=1100px) ---- */
 @media (max-width: 1100px) {
@@ -3413,6 +3534,7 @@ font-size:48px;
   .footer-top { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
 }
+
 
 /* ---- Tablet (<=900px) ---- */
 @media (max-width: 900px) {
@@ -3638,7 +3760,30 @@ font-size:48px;
   .blog-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .blog-heading { font-size: 40px; }
 
+
+  /* -- csr page: ceo message / sustainability container / sdg grid -- */
+  .ceo-csr-inner{
+
+  flex-direction:column;
+
+  padding:50px;
+
+  }
+
+  .csr-container{
+
+  flex-direction:column;
+
+  }
+
+  .sdg-grid{
+
+  grid-template-columns:1fr 1fr;
+
+  }
+
 }
+
 
 /* ---- Phone (<=600px) ---- */
 @media (max-width: 600px) {
@@ -3832,159 +3977,28 @@ font-size:16px;
   .blog-heading { font-size: 32px; }
   .blog-section { padding: 50px 0 70px; }
   .blog-inner { width: 92%; }
-}
-/* }
 
-/* ============================================================
-   CSR PROJECTS SLIDER SECTION
-   ============================================================ */
+  /* -- csr page: ceo message / sdg grid / heading -- */
+  .ceo-csr-inner{
 
-.csr-projects-section {
-  padding: 80px 0 90px;
-  background: #fff;
-}
+  width:92%;
 
-.csr-projects-inner {
-  width: 88%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
+  padding:35px 25px;
 
-.csr-projects-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 48px;
-}
+  gap:40px;
 
-.csr-projects-header h2 {
-  font-size: 42px;
-  font-weight: 700;
-  color: #0e1a0e;
-  margin: 0;
-}
-
-.csr-projects-nav {
-  display: flex;
-  gap: 12px;
-}
-
-.csr-prev-btn,
-.csr-next-btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1.5px solid #ccc;
-  background: #fff;
-  color: #333;
-  font-size: 15px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.25s, color 0.25s, border-color 0.25s;
-}
-
-.csr-prev-btn:hover,
-.csr-next-btn:hover {
-  background: #2e7d32;
-  color: #fff;
-  border-color: #2e7d32;
-}
-
-/* Viewport — hides overflow so only 3 cards show */
-.csr-slider-viewport {
-  overflow: hidden;
-}
-
-.csr-slider-track {
-  display: flex;
-  gap: 28px;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
-}
-
-/* Each card takes roughly 1/3 of the viewport */
-.csr-project-card {
-  flex: 0 0 calc((100% - 56px) / 3);
-  min-width: 0;
-  transition: transform 0.35s ease;
-  cursor: pointer;
-}
-
-.csr-project-card:hover {
-  transform: translateY(-10px);
-}
-
-.csr-project-img-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  aspect-ratio: 4 / 3;
-}
-
-.csr-project-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.45s ease;
-}
-
-/* Zoom on hover */
-.csr-project-card:hover .csr-project-img-wrap img {
-  transform: scale(1.07);
-}
-
-.csr-label {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  background: #fff;
-  color: #2e7d32;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-}
-
-.csr-project-card h3 {
-  font-size: 17px;
-  font-weight: 600;
-  color: #0e1a0e;
-  line-height: 1.45;
-  margin: 0 0 14px;
-}
-
-.csr-keep-reading {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #2e7d32;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: gap 0.2s;
-}
-
-.csr-keep-reading:hover {
-  gap: 12px;
-}
-
-/* ---- Responsive ---- */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .csr-project-card {
-    flex: 0 0 calc((100% - 28px) / 2);
   }
-  .csr-projects-header h2 { font-size: 30px; }
-}
 
-@media (max-width: 768px) {
-  .csr-project-card {
-    flex: 0 0 100%;
+  .sdg-grid{
+
+  grid-template-columns:1fr;
+
   }
-  .csr-projects-section { padding: 50px 0 60px; }
-  .csr-projects-header h2 { font-size: 26px; }
+
+  .csr-left h2{
+
+  font-size:48px;
+
+  }
+
 }
