@@ -2,7 +2,6 @@ $(document).ready(function () {
 
   /* ============================================================
      BANNER SLIDER (Owl Carousel)
-     FIX #9 — proper nav, FIX #42 — per-slide overlay animation
      ============================================================ */
   const $slider = $('.banner-slider');
 
